@@ -1,30 +1,19 @@
 #include <unistd.h>
-int is_str_equal(char *str1, char *str2, int ntry)
-{
-	int i;
-	int j;
+#include <stdio.h>
 
-	i = -1;
-	j = -1;
-	while (str1[++i])
-		if (str1[i] != str2[i])
-			return (1);
-	if (ntry != 1)
-		is_str_equal(str2, str1, 1);
-	return(0);
-}
+int		is_str_equal(char *str1, char *str2);
 
 void	ft_check_num(char *buf, char *inpt_num)
 {
-	char	*number;
+	char	number[9]={1,2};
 	int		i;
 	int		j;
 	int		unvalid;
 
-	i = 0;
+	i = -1;
 	unvalid = 0;
-	j=0;
-	while (buf[i] != '\0')
+	j = 0;
+	while (buf[++i] != '\0')
 	{
 		j++;
 		if (buf[i] == '\n')
@@ -34,22 +23,27 @@ void	ft_check_num(char *buf, char *inpt_num)
 		}
 		else if (buf[i] == ':')
 		{
-			if (is_str_equal(number, inpt_num, 0) == 0)
+			printf("%s", number);
+			if (is_str_equal(number, inpt_num) == 0)
 			{
+
 				while (buf[++i] != '\n')
 					write(1, &buf[i], 1);
 				write(1, " ", 1);
 				break ;
 			}
+			else
+				write(1, "F", 1);
 			unvalid = 1;
 		}
 		else
-			if (unvalid == 0)
+			if (unvalid == 0 && buf[i] > 47 && buf[i<58])
 				number[j] = buf[i];
 	}
 }
 
 int main(void)
 {
-	ft_check_num("10: a\n 100: b\n 1000:c", "1000");
+	ft_check_num("10:hola\n 100:b\n 1000:c", "100");
+	return(0);
 }
