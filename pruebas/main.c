@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 		int fd = open("english.dict", O_RDONLY);;
 		int i;
 		char buf[60000];
-	
+
 		nbytes = sizeof(buf);
 		bytes_read = read(fd, buf, nbytes);
 		i = 0;
@@ -31,6 +31,5 @@ int main(int argc, char **argv)
 				i ++;
 		}
 	}
-	printf("suspendimos");
 	return (0);
 }
